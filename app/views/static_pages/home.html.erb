@@ -10,6 +10,7 @@
             </div>
             <div class="col-lg-8 mx-auto">
                 <p class="text-faded mb-5">このサイトはあなたの好きなニュースフィードが流れてくるサービスです</p>
+                <%= link_to "Powered by News API", "https://newsapi.org" %>
                 <% if user_signed_in? %>
                 <% @interest = current_user.interest %>
                 <div id = 'profile'></div>
