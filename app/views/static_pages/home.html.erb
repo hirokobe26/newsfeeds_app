@@ -1,18 +1,56 @@
-<%= link_to "articles", articles_path %>
-
 <body id="page-top">
     <header class="masthead text-center text-white d-flex"> 
         <div class="container my-auto"> 
             <div class="row">
                 <div class="col-lg-10 mx-auto">
-                    <h1 class="text-uppercase"><strong>News API でブログアプリを作りたい</strong></h1>
+                    <h1 class="text-uppercase"><strong>ECBD Lab 【Rails + Jquery + News API】News API でブログアプリを作りたい(道半ば)
+                    </strong></h1>
                     <hr>
                 </div>
             </div>
             <div class="col-lg-8 mx-auto">
-                <p class="text-faded mb-5">このサイトはあなたの好きなニュースフィードが勝手に流れてくるサービスです</p><a class="btn btn-primary btn-xl js-scroll-trigger" role="button" href="#services">Sign Up Now</a></div>
+                <p class="text-faded mb-5">このサイトはあなたの好きなニュースフィードが流れてくるサービスです</p>
+                <% if user_signed_in? %>
+                <% @interest = current_user.interest %>
+                <div id = 'profile'></div>
+                    <script type="text/javascript">
+                        var url =
+                        	"https://newsapi.org/v2/everything?" +
+                        	"q=<%= @interest %>&" +
+                        	"sortBy=popularity&" +
+                        	"apikey=ac85bf67e3e34f56b8f79e43a5d1e57c";
+                        
+                        $(document).ready(function () {
+                        	$.getJSON(url).done(function (data) {
+                        		for (var i = 0; i < data.articles.length; i++) {
+                        			$("#profile").append(
+                        				"<h3>" +
+                        				data.articles[i].title +
+                        				"</h3>" +
+                        				
+                        				
+                        				'<a href= "' + 
+                        				data.articles[i].url + 
+                        				'">' + 
+                        				'<img src= "' + 
+                        				data.articles[i].urlToImage + 
+                        				'" alt="image is not available">' + 
+                        				"<p>" + 
+                        				data.articles[i].description + 
+                        				"</p>" + 
+                        				"</a>"
+                        			);
+                        		}
+                        	});
+                        });
+                    </script>
+
+                <% else %>
+                     <a class="btn btn-primary btn-xl js-scroll-trigger" role="button" href="#services">Sign Up Now</a></div>
+                <% end %>
         </div>
     </header>
 </body>
 
 
+ 
