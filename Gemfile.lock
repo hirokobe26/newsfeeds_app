@@ -295,7 +295,7 @@ GEM
     netrc (0.11.0)
     news-api (0.1.0)
     nio4r (2.3.1)
-    nokogiri (1.10.3)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
